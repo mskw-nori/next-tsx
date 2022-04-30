@@ -7,7 +7,7 @@ import styles from '@/styles/Home.module.css'
 
 import type { NextPage } from 'next'
 
-const Home: NextPage = () => (
+const About: NextPage = () => (
   <div className={styles.container}>
     <Head>
       <title>Create App</title>
@@ -17,10 +17,10 @@ const Home: NextPage = () => (
 
     <Header />
 
-    <Main title="index" />
+    <Main title="about" />
 
     <Footer />
   </div>
 )
 
-export default Home
+export default About
