@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
@@ -9,11 +9,12 @@ import styles from '@/styles/Home.module.css'
 import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
-  const handleClick = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    alert(e)
-    console.log(e.target)
-    e.preventDefault()
-  }, [])
+  const [count, setCount] = useState<number>(0)
+
+  // const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+  const handleClick = () => {
+    setCount(count => count + 1)
+  }
 
   useEffect(() => {
     document.body.style.backgroundColor = 'lightblue'
@@ -32,7 +33,8 @@ const Home: NextPage = () => {
 
       <Header />
 
-      <a onClick={handleClick}>ボタン</a>
+      <button onClick={handleClick}>ボタン</button>
+      <h1>{count}</h1>
       <Main title="index" />
       <Footer />
     </div>
