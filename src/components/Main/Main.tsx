@@ -1,8 +1,8 @@
+import { FC } from 'react'
+
 import { HeadLine } from '@/components/HeadLine/HeadLine'
 import { Links } from '@/components/Links/Links'
 import styles from '@/components/Main/Main.module.css'
-
-import type { FC } from 'react'
 
 type Props = {
   title: string
