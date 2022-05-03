@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
@@ -11,17 +11,25 @@ import type { NextPage } from 'next'
 const Home: NextPage = () => {
   const [count, setCount] = useState<number>(0)
 
-  // const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-  const handleClick = () => {
-    setCount(count => count + 1)
-  }
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      count < 10 ? setCount(count => count + 1) : setCount(count)
+    },
+    [count]
+  )
+  // const handleClick = () => {
+  //   setCount(count => count + 1)
+  // }
 
   useEffect(() => {
+    console.log(`マウント時${count}`)
     document.body.style.backgroundColor = 'lightblue'
     return () => {
+      console.log(`アンマウント時${count}`)
+
       document.body.style.backgroundColor = ''
     }
-  }, [])
+  }, [count])
 
   return (
     <div className={styles.container}>
