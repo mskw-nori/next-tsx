@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
 
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
@@ -9,17 +9,24 @@ import styles from '@/styles/Home.module.css'
 import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
-  const [count, setCount] = useState<number>(0)
+  const [count, setCount] = useState(0)
+  const [text, setText] = useState('')
+  const [isShow, setIsShow] = useState(false)
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
       count < 10 ? setCount(count => count + 1) : setCount(count)
+      count % 2 === 1 ? setIsShow(true) : setIsShow(false)
     },
     [count]
   )
   // const handleClick = () => {
   //   setCount(count => count + 1)
   // }
+
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    e.target.value.length <= 5 ? setText(e.target.value) : alert('五文字以内の入力')
+  }, [])
 
   useEffect(() => {
     console.log(`マウント時${count}`)
@@ -42,7 +49,8 @@ const Home: NextPage = () => {
       <Header />
 
       <button onClick={handleClick}>ボタン</button>
-      <h1>{count}</h1>
+      <input type="text" value={text} onChange={handleChange}></input>
+      {isShow ? <h1>{count}</h1> : null}
       <Main title="index" />
       <Footer />
     </div>
