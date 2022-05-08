@@ -12,6 +12,7 @@ const Home: NextPage = () => {
   const [count, setCount] = useState(0)
   const [text, setText] = useState('')
   const [isShow, setIsShow] = useState(false)
+  const [array, setArray] = useState<string[]>([])
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
@@ -27,6 +28,20 @@ const Home: NextPage = () => {
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     e.target.value.length <= 5 ? setText(e.target.value) : alert('五文字以内の入力')
   }, [])
+
+  const handleAdd = useCallback(
+    (e: React.MouseEvent) => {
+      setArray(prevArray => {
+        if (prevArray.some(item => item === text)) {
+          alert('既に存在します')
+          return prevArray
+        }
+
+        return [...prevArray, text]
+      })
+    },
+    [text]
+  )
 
   useEffect(() => {
     console.log(`マウント時${count}`)
@@ -47,10 +62,17 @@ const Home: NextPage = () => {
       </Head>
 
       <Header />
-
-      <button onClick={handleClick}>ボタン</button>
-      <input type="text" value={text} onChange={handleChange}></input>
-      {isShow ? <h1>{count}</h1> : null}
+      <div className={styles.container}>
+        <button onClick={handleClick}>ボタン</button>
+        <input type="text" value={text} onChange={handleChange}></input>
+        <button onClick={handleAdd}>追加</button>
+        {isShow ? <h1>{count}</h1> : null}
+        <ul>
+          {array.map(item => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </div>
       <Main title="index" />
       <Footer />
     </div>
