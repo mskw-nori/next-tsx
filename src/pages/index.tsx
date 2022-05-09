@@ -4,17 +4,29 @@ import React from 'react'
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
 import { Main } from '@/components/Main/Main'
-import { useBgLightBlue } from '@/hooks/useBgLightBlue'
-import { useCounter } from '@/hooks/useCounter'
-import { useInputArray } from '@/hooks/useInputArray'
+// import { useBgLightBlue } from '@/hooks/useBgLightBlue'
+// import { useCounter } from '@/hooks/useCounter'
+// import { useInputArray } from '@/hooks/useInputArray'
 import styles from '@/styles/Home.module.css'
 
 import type { NextPage } from 'next'
 
-const Home: NextPage = () => {
-  const { count, handleClick, isShow } = useCounter()
-  const { text, array, handleChange, handleAdd } = useInputArray()
-  useBgLightBlue(count)
+type appProps = {
+  count: number
+  handleClick: () => void
+  isShow: boolean
+  text: string
+  array: string[]
+  handleChange: () => void
+  handleAdd: () => void
+}
+const Home: NextPage<appProps> = props => {
+  console.log(props)
+
+  const { count, handleClick, isShow, text, array, handleChange, handleAdd } = props
+  // const { count, handleClick, isShow } = useCounter()
+  // const { text, array, handleChange, handleAdd } = useInputArray()
+  // useBgLightBlue(count)
 
   return (
     <div className={styles.container}>
