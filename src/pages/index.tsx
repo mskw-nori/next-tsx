@@ -1,57 +1,20 @@
 import Head from 'next/head'
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
+import React from 'react'
 
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
 import { Main } from '@/components/Main/Main'
+import { useBgLightBlue } from '@/hooks/useBgLightBlue'
+import { useCounter } from '@/hooks/useCounter'
+import { useInputArray } from '@/hooks/useInputArray'
 import styles from '@/styles/Home.module.css'
 
 import type { NextPage } from 'next'
 
 const Home: NextPage = () => {
-  const [count, setCount] = useState(0)
-  const [text, setText] = useState('')
-  const [isShow, setIsShow] = useState(false)
-  const [array, setArray] = useState<string[]>([])
-
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      count < 10 ? setCount(count => count + 1) : setCount(count)
-      count % 2 === 1 ? setIsShow(true) : setIsShow(false)
-    },
-    [count]
-  )
-  // const handleClick = () => {
-  //   setCount(count => count + 1)
-  // }
-
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    e.target.value.length <= 5 ? setText(e.target.value) : alert('五文字以内の入力')
-  }, [])
-
-  const handleAdd = useCallback(
-    (e: React.MouseEvent) => {
-      setArray(prevArray => {
-        if (prevArray.some(item => item === text)) {
-          alert('既に存在します')
-          return prevArray
-        }
-
-        return [...prevArray, text]
-      })
-    },
-    [text]
-  )
-
-  useEffect(() => {
-    console.log(`マウント時${count}`)
-    document.body.style.backgroundColor = 'lightblue'
-    return () => {
-      console.log(`アンマウント時${count}`)
-
-      document.body.style.backgroundColor = ''
-    }
-  }, [count])
+  const { count, handleClick, isShow } = useCounter()
+  const { text, array, handleChange, handleAdd } = useInputArray()
+  useBgLightBlue(count)
 
   return (
     <div className={styles.container}>
