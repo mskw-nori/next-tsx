@@ -8,19 +8,9 @@ import { Main } from '@/components/Main/Main'
 // import { useCounter } from '@/hooks/useCounter'
 // import { useInputArray } from '@/hooks/useInputArray'
 import styles from '@/styles/Home.module.css'
+import type { ExtendedNextPage } from '@/types'
 
-import type { NextPage } from 'next'
-
-type appProps = {
-  count: number
-  handleClick: () => void
-  isShow: boolean
-  text: string
-  array: string[]
-  handleChange: () => void
-  handleAdd: () => void
-}
-const Home: NextPage<appProps> = props => {
+const Home: ExtendedNextPage = props => {
   console.log(props)
 
   const { count, handleClick, isShow, text, array, handleChange, handleAdd } = props
