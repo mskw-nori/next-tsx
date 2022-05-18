@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 import React from 'react'
 
-import { useBgLightBlue } from '@/hooks/useBgLightBlue'
+import { useBgColor } from '@/hooks/useBgColor'
 import { useCounter } from '@/hooks/useCounter'
 import { useInputArray } from '@/hooks/useInputArray'
 
@@ -12,7 +12,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   const inputArray = useInputArray()
 
-  useBgLightBlue(counter.count)
+  useBgColor()
 
   return <Component {...pageProps} {...counter} {...inputArray} />
 }

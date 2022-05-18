@@ -4,19 +4,13 @@ import React from 'react'
 import { Footer } from '@/components/Footer/Footer'
 import { Header } from '@/components/Header/Header'
 import { Main } from '@/components/Main/Main'
-// import { useBgLightBlue } from '@/hooks/useBgLightBlue'
-// import { useCounter } from '@/hooks/useCounter'
-// import { useInputArray } from '@/hooks/useInputArray'
 import styles from '@/styles/Home.module.css'
 import type { ExtendedNextPage } from '@/types'
 
 const Home: ExtendedNextPage = props => {
   console.log(props)
 
-  const { count, handleClick, isShow, text, array, handleChange, handleAdd } = props
-  // const { count, handleClick, isShow } = useCounter()
-  // const { text, array, handleChange, handleAdd } = useInputArray()
-  // useBgLightBlue(count)
+  const { handleClick, isShow, text, array, handleChange, handleAdd, doubleCount } = props
 
   return (
     <div className={styles.container}>
@@ -31,7 +25,7 @@ const Home: ExtendedNextPage = props => {
         <button onClick={handleClick}>ボタン</button>
         <input type="text" value={text} onChange={handleChange}></input>
         <button onClick={handleAdd}>追加</button>
-        {isShow ? <h1>{count}</h1> : null}
+        {isShow ? <h1>{doubleCount}</h1> : null}
         <ul>
           {array.map(item => (
             <li key={item}>{item}</li>

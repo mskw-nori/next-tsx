@@ -10,16 +10,16 @@ export const useInputArray = () => {
 
   const handleAdd = useCallback(
     (e: React.MouseEvent) => {
-      setArray(prevArray => {
-        if (prevArray.some(item => item === text)) {
-          alert('既に存在します')
-          return prevArray
-        }
-
-        return [...prevArray, text]
-      })
+      setArray(array.includes(text) ? (alert('既に存在します'), array) : [...array, text])
+      // setArray(prevArray => {
+      //   if (prevArray.includes(text)) {
+      //     alert('既に存在します')
+      //     return prevArray
+      //   }
+      //   return [...prevArray, text]
+      // })
     },
-    [text]
+    [text, array]
   )
   return { text, array, handleChange, handleAdd }
 }
