@@ -28,7 +28,7 @@ const About: ExtendedNextPage = ({ count, handleClick, isShow, text, array, hand
       </ul>
     </div>
 
-    <Main title="about" />
+    <Main title="index" />
 
     <Footer />
   </div>
