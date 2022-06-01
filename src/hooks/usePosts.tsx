@@ -10,8 +10,8 @@ const fetcher = async (url: any) => {
   return json
 }
 
-export const usePosts = () => {
-  const { data, error } = useSWR('https://jsonplaceholder.typicode.com/posts', fetcher)
+export const usePosts = (props: any = '') => {
+  const { data, error } = useSWR(`https://jsonplaceholder.typicode.com/posts${`/${props}`}`, fetcher)
   console.log({ data, error })
   return { data, error, isLoading: !error && !data, isEmpty: data && data.length === 0 }
 }

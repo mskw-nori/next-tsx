@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, { FC } from 'react'
 
 import { usePosts } from '@/hooks/usePosts'
@@ -26,7 +27,12 @@ export const Posts: FC = () => {
     <ol>
       {data.map((post: User) => {
         const { id, title } = post
-        return <li key={id}>{title}</li>
+
+        return (
+          <li key={id}>
+            <Link href={`posts/${id}`}>{title}</Link>
+          </li>
+        )
       })}
     </ol>
   )
