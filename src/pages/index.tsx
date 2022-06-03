@@ -7,7 +7,7 @@ import { Main } from '@/components/Main/Main'
 import styles from '@/styles/Home.module.css'
 import type { ExtendedNextPage } from '@/types'
 
-const About: ExtendedNextPage = ({ count, handleClick, isShow, text, array, handleChange, handleAdd }) => (
+const Index: ExtendedNextPage = ({ count, handleClick, isShow, text, array, handleChange, handleAdd }) => (
   <div className={styles.container}>
     <Head>
       <title>Create App</title>
@@ -34,4 +34,4 @@ const About: ExtendedNextPage = ({ count, handleClick, isShow, text, array, hand
   </div>
 )
 
-export default About
+export default Index
