@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { FC } from 'react'
 
-import { usePosts } from '@/hooks/usePosts'
+import { usePost } from '@/hooks/usePosts'
 
 type User = {
   userId: number
@@ -11,7 +11,7 @@ type User = {
 }
 
 export const Posts: FC = () => {
-  const { data, error, isLoading, isEmpty } = usePosts()
+  const { data, error, isLoading, isEmpty } = usePost()
 
   if (isLoading) {
     return <div>ローディング中</div>

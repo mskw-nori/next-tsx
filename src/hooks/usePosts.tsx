@@ -10,8 +10,32 @@ const fetcher = async (url: any) => {
   return json
 }
 
-export const usePosts = (props: any = '') => {
-  const { data, error } = useSWR(`https://jsonplaceholder.typicode.com/posts${`/${props}`}`, fetcher)
-  console.log({ data, error })
+const API_URL = 'https://jsonplaceholder.typicode.com/'
+
+const useFetchArray = (url: any) => {
+  const { data, error } = useSWR(url, fetcher)
   return { data, error, isLoading: !error && !data, isEmpty: data && data.length === 0 }
+}
+
+export const usePost = (props: any = '') => {
+  return useFetchArray(`${API_URL}posts${`/${props}`}`)
+}
+
+export const useUsers = () => {
+  return useFetchArray(`${API_URL}users`)
+}
+export const useComments = () => {
+  return useFetchArray(`${API_URL}comments`)
+}
+
+export const useCommentInfo = (userId: any) => {
+  return useFetchArray(`${userId}` ? `${API_URL}comments/${userId}` : null)
+}
+
+export const useUserPost = (userId: any) => {
+  return useFetchArray(`${userId}` ? `${API_URL}users/${userId}` : null)
+}
+
+export const useCommentById = (id: any) => {
+  return useFetchArray(`${API_URL}comments?postId=${id}`)
 }

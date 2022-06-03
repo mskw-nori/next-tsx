@@ -1,16 +1,30 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { CommentByPostId } from '@/components/Comments/CommentsByPostId'
 import { Header } from '@/components/Header/Header'
-import { usePost, useUserPost } from '@/hooks/usePosts'
+import { useCommentInfo } from '@/hooks/usePosts'
 import styles from '@/styles/Home.module.css'
 import type { ExtendedNextPage } from '@/types'
 
-const PostId: ExtendedNextPage = props => {
+const UseComment = () => {
   const router = useRouter()
-  const { data: post } = usePost(router?.query.id)
-  const { data: user } = useUserPost(post?.userId)
+  const { data, error, isLoading } = useCommentInfo(router.query.id ? router.query.id : null)
+  if (isLoading) {
+    return <div>ローディング中</div>
+  }
+  if (error) {
+    return <div>{error.message}</div>
+  }
+  return (
+    <div>
+      <h1>{data.body}</h1>
+      <p>{data.name}</p>
+      <p>{data.email}</p>
+    </div>
+  )
+}
+
+const CommentsId: ExtendedNextPage = props => {
   return (
     <div className={styles.container}>
       <Head>
@@ -19,14 +33,9 @@ const PostId: ExtendedNextPage = props => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <div>
-        <h1>{post?.title}</h1>
-        <p>{post?.body}</p>
-        {user?.name ? <div>Created by {user.name}</div> : null}
-        <CommentByPostId id={post?.id} />
-      </div>
+      <UseComment />
     </div>
   )
 }
 
-export default PostId
+export default CommentsId
