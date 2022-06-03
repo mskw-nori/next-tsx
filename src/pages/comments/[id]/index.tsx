@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import { Header } from '@/components/Header/Header'
+import { PostsByUserId } from '@/components/Posts/PostsByUserId'
 import { useCommentInfo } from '@/hooks/usePosts'
 import styles from '@/styles/Home.module.css'
 import type { ExtendedNextPage } from '@/types'
@@ -20,6 +21,8 @@ const UseComment = () => {
       <h1>{data.body}</h1>
       <p>{data.name}</p>
       <p>{data.email}</p>
+      <h2>元の記事</h2>
+      <PostsByUserId id={data.id} />
     </div>
   )
 }

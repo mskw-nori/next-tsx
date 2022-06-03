@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-import { usePost } from '@/hooks/usePosts'
+import { usePostsByUserId } from '@/hooks/usePosts'
 
 type User = {
   userId?: number
@@ -10,8 +10,8 @@ type User = {
   body?: string
 }
 
-export const Posts = () => {
-  const { data, error, isLoading, isEmpty } = usePost()
+export const PostsByUserId = (props: User) => {
+  const { data, error, isLoading, isEmpty } = usePostsByUserId(props.id)
 
   if (isLoading) {
     return <div>ローディング中</div>
@@ -30,7 +30,7 @@ export const Posts = () => {
 
         return (
           <li key={id}>
-            <Link href={`posts/${id}`}>{title}</Link>
+            <Link href={`/posts/${id}`}>{title}</Link>
           </li>
         )
       })}
