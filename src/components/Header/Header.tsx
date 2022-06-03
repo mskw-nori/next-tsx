@@ -7,7 +7,9 @@ import type { FC } from 'react'
 export const Header: FC = () => {
   const navitems = [
     { href: '/', label: 'Index' },
-    { href: '/posts', label: 'Posts' }
+    { href: '/posts', label: 'Posts' },
+    { href: '/users', label: 'Users' },
+    { href: '/comments', label: 'Comments' }
   ]
   return (
     <header className={classes.header}>
