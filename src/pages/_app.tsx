@@ -1,4 +1,5 @@
-import '@/styles/globals.css'
+import 'tailwindcss/tailwind.css'
+// import '@/styles/globals.css'
 import React from 'react'
 
 import { useBgColor } from '@/hooks/useBgColor'
