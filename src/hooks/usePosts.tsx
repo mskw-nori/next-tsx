@@ -1,19 +1,19 @@
 import useSWR from 'swr'
 
-const fetcher = async (url: any) => {
-  const response = await fetch(url)
+// const fetcher = async (url: any) => {
+//   const response = await fetch(url)
 
-  if (!response.ok) {
-    throw new Error('エラー')
-  }
-  const json = await response.json()
-  return json
-}
+//   if (!response.ok) {
+//     throw new Error('エラー')
+//   }
+//   const json = await response.json()
+//   return json
+// }
 
 const API_URL = 'https://jsonplaceholder.typicode.com/'
 
 const useFetchArray = (url: any) => {
-  const { data, error } = useSWR(url, fetcher)
+  const { data, error } = useSWR(url)
   return { data, error, isLoading: !error && !data, isEmpty: data && data.length === 0 }
 }
 
