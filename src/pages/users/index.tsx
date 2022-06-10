@@ -6,6 +6,7 @@ import { Header } from '@/components/Header/Header'
 import { useUsers } from '@/hooks/usePosts'
 import styles from '@/styles/Home.module.css'
 import type { ExtendedNextPage } from '@/types'
+import { API_URL } from '@/utills/API'
 
 type user = {
   id: number
@@ -41,7 +42,7 @@ const UserComponent = () => {
 
 export const getServerSideProps = async () => {
   // ユーザー一覧の取得
-  const USERS_API_URL = `https://jsonplaceholder.typicode.com/users`
+  const USERS_API_URL = `${API_URL}users`
   const user = await fetch(USERS_API_URL)
   const userData = await user.json()
 

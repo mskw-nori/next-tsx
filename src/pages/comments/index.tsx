@@ -5,6 +5,7 @@ import { SWRConfig } from 'swr'
 import { Header } from '@/components/Header/Header'
 import { useComments } from '@/hooks/usePosts'
 import styles from '@/styles/Home.module.css'
+import { API_URL } from '@/utills/API'
 
 type user = {
   id: number
@@ -42,7 +43,7 @@ const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
 export const getStaticProps = async () => {
   // コメント情報の取得
-  const COMMENTS_API_URL = `https://jsonplaceholder.typicode.com/comments`
+  const COMMENTS_API_URL = `${API_URL}comments`
   const comments = await fetch(COMMENTS_API_URL)
   const commentsData = await comments.json()
   await sleep(2000)
