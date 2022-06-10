@@ -1,6 +1,6 @@
 import useSWRImmutable from 'swr/immutable'
 
-const API_URL = 'https://jsonplaceholder.typicode.com/'
+import { API_URL } from '@/utills/API'
 
 const useFetchArray = (url: any) => {
   const { data, error } = useSWRImmutable(url)

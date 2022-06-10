@@ -6,6 +6,7 @@ import { Header } from '@/components/Header/Header'
 import { PostsByUserId } from '@/components/Posts/PostsByUserId'
 import { useCommentInfo } from '@/hooks/usePosts'
 import styles from '@/styles/Home.module.css'
+import { API_URL } from '@/utills/API'
 
 const UseComment = () => {
   const router = useRouter()
@@ -28,7 +29,7 @@ const UseComment = () => {
 }
 
 export const getStaticPaths = async () => {
-  const comments = await fetch('https://jsonplaceholder.typicode.com/comments?_limit=10')
+  const comments = await fetch(`${API_URL}comments?_limit=10`)
   const commentsData = await comments.json()
   const paths = commentsData.map((comment: any) => ({ params: { id: comment.id.toString() } }))
 
@@ -40,7 +41,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (ctx: any) => {
   const { id } = ctx.params
-  const COMMENT_API_URL = `https://jsonplaceholder.typicode.com/comments/${id}`
+  const COMMENT_API_URL = `${API_URL}comments/${id}`
   const comment = await fetch(COMMENT_API_URL)
 
   if (!comment.ok) {

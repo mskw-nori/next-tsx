@@ -6,15 +6,15 @@ import { Header } from '@/components/Header/Header'
 import { PostsByUserId } from '@/components/Posts/PostsByUserId'
 import { useUserPost } from '@/hooks/usePosts'
 import styles from '@/styles/Home.module.css'
-
+import { API_URL } from '@/utills/API'
 export const getServerSideProps = async (ctx: any) => {
   // ユーザー情報の取得
   const { id } = ctx.query
-  const USER_API_URL = `https://jsonplaceholder.typicode.com/users/${id}`
+  const USER_API_URL = `${API_URL}users/${id}`
   const user = await fetch(USER_API_URL)
   const userData = await user.json()
   // ユーザーの投稿情報の取得
-  const POSTS_API_URL = `https://jsonplaceholder.typicode.com/posts?userId=${userData.id}`
+  const POSTS_API_URL = `${API_URL}posts?userId=${userData.id}`
   const posts = await fetch(POSTS_API_URL)
   const postsData = await posts.json()
 
