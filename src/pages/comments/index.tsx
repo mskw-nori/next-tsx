@@ -28,7 +28,7 @@ const CommentComponent = () => {
       {data.map((comment: user) => {
         return (
           <li key={comment.id}>
-            <Link href={`/comments/${comment.id}`}>
+            <Link href={`/comments/${comment.id}`} prefetch={false}>
               <a>{`${comment.body}}`}</a>
             </Link>
           </li>
